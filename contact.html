@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — VOID Zero-Waste Fashion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,600;1,6..96,300;1,6..96,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="page-loader">
+  <div class="loader-text"><span>CONTACT</span></div>
+  <div class="loader-bar"></div>
+  <div class="loader-num">0%</div>
+</div>
+
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">V<span>O</span>ID</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="story.html">Story</a></li>
+    <li><a href="garments.html">Collection</a></li>
+    <li><a href="zero-waste.html">Process</a></li>
+    <li><a href="designer.html">Designer</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-toggle"><span></span><span></span><span></span></button>
+</nav>
+<nav class="mobile-nav">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="story.html">Story</a>
+  <a href="garments.html">Collection</a><a href="zero-waste.html">Process</a>
+  <a href="designer.html">Designer</a><a href="contact.html">Contact</a>
+  <a href="contact.html" class="btn mobile-only-button" style="margin-top: 2rem;">Contact Us</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-line"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-label"><span class="label">Let's Connect</span></div>
+    <h1>Say <em style="font-style:normal;color:var(--red)">Hello</em></h1>
+  </div>
+</div>
+
+<!-- CONTACT LAYOUT -->
+<section class="section">
+  <div class="contact-layout">
+
+    <!-- LEFT: INFO -->
+    <div class="reveal-left">
+      <h2 style="margin-bottom:1rem;">Get in <span class="text-red">touch</span></h2>
+      <p>Whether you have questions about our process, want to collaborate, or simply want to talk fashion and sustainability — we'd love to hear from you.</p>
+
+      <div class="contact-details" style="margin-top:2.5rem;">
+        <div class="contact-detail">
+          <div class="contact-detail-icon">&#9993;</div>
+          <div class="contact-detail-text">
+            <strong>Email</strong>
+            <p>hello@void-fashion.com</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">&#9742;</div>
+          <div class="contact-detail-text">
+            <strong>Studio</strong>
+            <p>Open by appointment only</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">&#9675;</div>
+          <div class="contact-detail-text">
+            <strong>Response Time</strong>
+            <p>Within 48 hours on weekdays</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-socials">
+        <a class="social-link" href="#" aria-label="Instagram" title="Instagram">&#9768;</a>
+        <a class="social-link" href="#" aria-label="Pinterest" title="Pinterest">&#9670;</a>
+        <a class="social-link" href="#" aria-label="LinkedIn" title="LinkedIn">&#9644;</a>
+      </div>
+
+      <!-- Map / Location visual -->
+      <div style="margin-top:3rem;padding:2rem;background:var(--bg-2);border:1px solid var(--bg-3);">
+        <span class="label" style="display:block;margin-bottom:1rem;">Studio Location</span>
+        <div style="height:160px;background:var(--bg-3);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(255,255,255,0.03) 28px,rgba(255,255,255,0.03) 29px),repeating-linear-gradient(90deg,transparent,transparent 28px,rgba(255,255,255,0.03) 28px,rgba(255,255,255,0.03) 29px);"></div>
+          <div style="text-align:center;position:relative;z-index:1;">
+            <div style="font-size:1.5rem;color:var(--red);margin-bottom:0.5rem;">&#9655;</div>
+            <span class="label">VOID Studio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: FORM -->
+    <div class="reveal-right delay-2">
+      <form class="contact-form" novalidate data-email="gopikaajith1908@gmail.com">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" placeholder="Your first name" required />
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" placeholder="Your last name" />
+            <div class="form-line"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          <div class="form-line"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select id="subject" name="subject">
+            <option value="" disabled selected>Select a topic...</option>
+            <option value="collab">Collaboration</option>
+            <option value="press">Press & Media</option>
+            <option value="process">About Our Process</option>
+            <option value="garment">About a Garment</option>
+            <option value="other">Something Else</option>
+          </select>
+          <div class="form-line"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
+          <div class="form-line"></div>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn">
+            <span>Send Message</span>
+            <span class="btn-arrow">&#8594;</span>
+          </button>
+          <p class="form-privacy">We never share your data with third parties.</p>
+        </div>
+      </form>
+
+      <div class="form-success">
+        <div class="form-success-icon">&#10003;</div>
+        <h3 style="margin-bottom:0.5rem;">Message received.</h3>
+        <p>Thank you for reaching out. We'll be in touch within 48 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--bg-2);border-top:1px solid var(--bg-3);">
+  <div class="section-header centered reveal">
+    <span class="section-num">FAQs</span>
+    <h2>Common questions</h2>
+    <span class="accent-line center"></span>
+  </div>
+
+  <div style="max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:0;">
+    <details style="border-bottom:1px solid var(--bg-3);padding:1.5rem 0;cursor:pointer;" class="reveal delay-1">
+      <summary style="font-family:var(--font-heading);font-size:1.1rem;color:var(--white);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+        What does "zero-waste" actually mean?
+        <span style="color:var(--red);font-size:1.2rem;transition:transform 0.3s;">+</span>
+      </summary>
+      <p style="margin-top:1rem;padding-left:0;">It means that when our pattern pieces are cut, no fabric is discarded. Every centimetre of the original fabric roll becomes part of one or more garments. No offcuts, no scraps, no landfill.</p>
+    </details>
+
+    <details style="border-bottom:1px solid var(--bg-3);padding:1.5rem 0;cursor:pointer;" class="reveal delay-2">
+      <summary style="font-family:var(--font-heading);font-size:1.1rem;color:var(--white);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+        Are the garments available to purchase?
+        <span style="color:var(--red);font-size:1.2rem;">+</span>
+      </summary>
+      <p style="margin-top:1rem;">This collection is a portfolio project demonstrating the zero-waste design methodology. Future plans include an e-commerce platform. Contact us if you're interested in commissioning a piece.</p>
+    </details>
+
+    <details style="border-bottom:1px solid var(--bg-3);padding:1.5rem 0;cursor:pointer;" class="reveal delay-3">
+      <summary style="font-family:var(--font-heading);font-size:1.1rem;color:var(--white);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+        Can I collaborate with the designer?
+        <span style="color:var(--red);font-size:1.2rem;">+</span>
+      </summary>
+      <p style="margin-top:1rem;">Absolutely. We welcome collaborations with other designers, brands, artists, and sustainability organisations. Use the contact form above and select "Collaboration" as the subject.</p>
+    </details>
+
+    <details style="padding:1.5rem 0;cursor:pointer;" class="reveal delay-4">
+      <summary style="font-family:var(--font-heading);font-size:1.1rem;color:var(--white);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+        Where are the garments made?
+        <span style="color:var(--red);font-size:1.2rem;">+</span>
+      </summary>
+      <p style="margin-top:1rem;">All garments are made in-studio, by hand. We do not use large-scale manufacturing. Each piece is an individual creation, made with intention and care.</p>
+    </details>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">V<span>O</span>ID</a>
+      <p>Zero-waste fashion for a conscious generation.</p>
+    </div>
+    <div class="footer-col"><h5>Navigate</h5><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="garments.html">Collection</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Explore</h5><ul>
+      <li><a href="story.html">Story</a></li>
+      <li><a href="zero-waste.html">Process</a></li>
+      <li><a href="designer.html">Designer</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Values</h5><ul>
+      <li><a href="#">Sustainability</a></li>
+      <li><a href="#">Ethical Making</a></li>
+      <li><a href="#">Zero Waste</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 <span>VOID</span>. All rights reserved.</p>
+    <p class="footer-made">Zero waste. Zero compromise.</p>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

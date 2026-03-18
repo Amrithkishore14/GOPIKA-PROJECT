@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collection — VOID Zero-Waste Fashion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,600;1,6..96,300;1,6..96,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="page-loader">
+  <div class="loader-text"><span>COLLECTION</span></div>
+  <div class="loader-bar"></div>
+  <div class="loader-num">0%</div>
+</div>
+
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<div class="lightbox">
+  <button class="lightbox-close">&#x2715;</button>
+  <img class="lightbox-img" src="" alt="" />
+</div>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">V<span>O</span>ID</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="story.html">Story</a></li>
+    <li><a href="garments.html">Collection</a></li>
+    <li><a href="zero-waste.html">Process</a></li>
+    <li><a href="designer.html">Designer</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-toggle"><span></span><span></span><span></span></button>
+</nav>
+<nav class="mobile-nav">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="story.html">Story</a>
+  <a href="garments.html">Collection</a><a href="zero-waste.html">Process</a>
+  <a href="designer.html">Designer</a><a href="contact.html">Contact</a>
+  <a href="contact.html" class="btn mobile-only-button" style="margin-top: 2rem;">Contact Us</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-line"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-label"><span class="label">8 Pieces</span></div>
+    <h1>The <em style="font-style:normal;color:var(--red)">Collection</em></h1>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<section class="section" style="padding-bottom:0;">
+  <div class="section-header reveal">
+    <span class="section-num">Collection — 2024</span>
+    <h2>Every piece. Zero waste.</h2>
+    <span class="accent-line"></span>
+    <p>Add your garment images to <code style="color:var(--red);font-size:0.8rem;">assets/images/garments/</code> and update the src attributes below.</p>
+  </div>
+
+  <div class="garments-filter reveal">
+    <button class="filter-btn active" data-filter="all">All Pieces</button>
+    <button class="filter-btn" data-filter="tops">Tops</button>
+    <button class="filter-btn" data-filter="bottoms">Bottoms</button>
+    <button class="filter-btn" data-filter="full">Full Looks</button>
+    <button class="filter-btn" data-filter="outerwear">Outerwear</button>
+  </div>
+</section>
+
+<!-- GRID -->
+<section class="section" style="padding-top:2rem;">
+  <div class="garments-grid">
+
+    <div class="garment-card reveal delay-1" data-category="full">
+      <div class="garment-img-wrap" data-lightbox="assets/images/garments/g1.jpg">
+        <div class="img-placeholder" style="height:380px;"><span class="img-placeholder-text">Garment 01</span></div>
+        <div class="garment-overlay">
+          <div class="garment-overlay-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="garment-info">
+        <div class="garment-tag">Full Look — 01</div>
+        <h3 class="garment-name">The Void Drape</h3>
+        <p class="garment-desc">A signature floor-length silhouette engineered from a single rectangular cut.</p>
+      </div>
+    </div>
+
+    <div class="garment-card reveal delay-2" data-category="tops">
+      <div class="garment-img-wrap" data-lightbox="assets/images/garments/g2.jpg">
+        <div class="img-placeholder" style="height:380px;"><span class="img-placeholder-text">Garment 02</span></div>
+        <div class="garment-overlay">
+          <div class="garment-overlay-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="garment-info">
+        <div class="garment-tag">Top — 02</div>
+        <h3 class="garment-name">Fold Theory</h3>
+        <p class="garment-desc">Origami-inspired folds create sculptural volume without extra fabric.</p>
+      </div>
+    </div>
+
+    <div class="garment-card reveal delay-3" data-category="bottoms">
+      <div class="garment-img-wrap" data-lightbox="assets/images/garments/g3.jpg">
+        <div class="img-placeholder" style="height:380px;"><span class="img-placeholder-text">Garment 03</span></div>
+        <div class="garment-overlay">
+          <div class="garment-overlay-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="garment-info">
+        <div class="garment-tag">Bottom — 03</div>
+        <h3 class="garment-name">Angular Wrap</h3>
+        <p class="garment-desc">Geometric cut creating a fluid skirt from triangular panels.</p>
+      </div>
+    </div>
+
+    <div class="garment-card reveal delay-4" data-category="outerwear">
+      <div class="garment-img-wrap" data-lightbox="assets/images/garments/g4.jpg">
+        <div class="img-placeholder" style="height:380px;"><span class="img-placeholder-text">Garment 04</span></div>
+        <div class="garment-overlay">
+          <div class="garment-overlay-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="garment-info">
+        <div class="garment-tag">Outerwear — 04</div>
+        <h3 class="garment-name">The Zero Coat</h3>
+        <p class="garment-desc">A structured coat where seams align with pattern edge — no remnants.</p>
+      </div>
+    </div>
+
+    <div class="garment-card reveal delay-1" data-category="full">
+      <div class="garment-img-wrap" data-lightbox="assets/images/garments/g5.jpg">
+        <div class="img-placeholder" style="height:380px;"><span class="img-placeholder-text">Garment 05</span></div>
+        <div class="garment-overlay">
+          <div class="garment-overlay-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="garment-info">
+        <div class="garment-tag">Full Look — 05</div>
+        <h3 class="garment-name">Grid System</h3>
+        <p class="garment-desc">Inspired by architectural blueprints — precise, structural, complete.</p>
+      </div>
+    </div>
+
+    <div class="garment-card reveal delay-2" data-category="tops">
+      <div class="garment-img-wrap" data-lightbox="assets/images/garments/g6.jpg">
+        <div class="img-placeholder" style="height:380px;"><span class="img-placeholder-text">Garment 06</span></div>
+        <div class="garment-overlay">
+          <div class="garment-overlay-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="garment-info">
+        <div class="garment-tag">Top — 06</div>
+        <h3 class="garment-name">Planar Shirt</h3>
+        <p class="garment-desc">A flat-pattern shirt where the fabric becomes the structure.</p>
+      </div>
+    </div>
+
+    <div class="garment-card reveal delay-3" data-category="outerwear">
+      <div class="garment-img-wrap" data-lightbox="assets/images/garments/g7.jpg">
+        <div class="img-placeholder" style="height:380px;"><span class="img-placeholder-text">Garment 07</span></div>
+        <div class="garment-overlay">
+          <div class="garment-overlay-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="garment-info">
+        <div class="garment-tag">Outerwear — 07</div>
+        <h3 class="garment-name">Capsule Jacket</h3>
+        <p class="garment-desc">Eight panels, zero offcuts, one perfect jacket.</p>
+      </div>
+    </div>
+
+    <div class="garment-card reveal delay-4" data-category="bottoms">
+      <div class="garment-img-wrap" data-lightbox="assets/images/garments/g8.jpg">
+        <div class="img-placeholder" style="height:380px;"><span class="img-placeholder-text">Garment 08</span></div>
+        <div class="garment-overlay">
+          <div class="garment-overlay-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="garment-info">
+        <div class="garment-tag">Bottom — 08</div>
+        <h3 class="garment-name">Tessellation Trousers</h3>
+        <p class="garment-desc">Interlocking geometric pieces form a complete, elegant trouser.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">V<span>O</span>ID</a>
+      <p>Zero-waste fashion for a conscious generation.</p>
+    </div>
+    <div class="footer-col"><h5>Navigate</h5><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="garments.html">Collection</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Explore</h5><ul>
+      <li><a href="story.html">Story</a></li>
+      <li><a href="zero-waste.html">Process</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Values</h5><ul>
+      <li><a href="#">Sustainability</a></li>
+      <li><a href="#">Ethical Making</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 <span>VOID</span>. All rights reserved.</p>
+    <p class="footer-made">Zero waste. Zero compromise.</p>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
