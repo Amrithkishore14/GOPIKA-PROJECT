@@ -633,8 +633,18 @@ body::before {
 .featured-item {
   position: relative;
   overflow: hidden;
-  background: var(--bg-3);
+  background: #000;
   cursor: none;
+  display: flex;
+  flex-direction: column;
+}
+.featured-item img {
+  width: 100%;
+  height: 100% !important;
+  min-height: 256px;
+  object-fit: cover;
+  display: block;
+  flex: 1;
 }
 .featured-item:first-child {
   grid-row: span 2;
@@ -923,6 +933,52 @@ body::before {
   margin-bottom: 0.5rem;
 }
 .story-item-title { font-size: 1rem; }
+
+/* Story Mood Board Layout */
+.story-moodboard-wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: start;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.story-moodboard-img {
+  position: sticky;
+  top: 6rem;
+}
+.story-moodboard-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--bg-3);
+}
+.story-moodboard-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.story-text-item {
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--bg-3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.story-text-item:first-child {
+  border-top: 1px solid var(--bg-3);
+}
+.story-text-item .story-item-num {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--red);
+  letter-spacing: 0.25em;
+}
+.story-text-item .story-item-title {
+  font-size: 1.1rem;
+  color: var(--white);
+}
 
 /* ================================================
    GARMENTS PAGE
@@ -1499,6 +1555,8 @@ body::before {
   .garments-grid { grid-template-columns: repeat(2, 1fr); }
   .garment-img-wrap { height: 260px; }
   .story-masonry { columns: 2; }
+  .story-moodboard-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+  .story-moodboard-img { position: static; }
   .about-split { grid-template-columns: 1fr; }
   .about-img-wrap::before { display: none; }
   .contact-layout { grid-template-columns: 1fr; }
