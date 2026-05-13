@@ -21,7 +21,7 @@
     setTimeout(() => {
       loader.classList.add('done');
       loader.addEventListener('animationend', () => loader.remove(), { once: true });
-    }, 800);
+    }, 600);
   });
 })();
 
@@ -32,21 +32,18 @@
   if (!dot || !ring) return;
 
   let mx = -100, my = -100, rx = -100, ry = -100;
-  let raf;
 
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 
   function animCursor() {
-    // Dot snaps instantly; ring follows with lerp
-    dot.style.left  = mx + 'px';
-    dot.style.top   = my + 'px';
+    // Use transform: translate for GPU-composited movement (no layout recalc)
+    dot.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
 
     rx += (mx - rx) * 0.15;
     ry += (my - ry) * 0.15;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
+    ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
 
-    raf = requestAnimationFrame(animCursor);
+    requestAnimationFrame(animCursor);
   }
   animCursor();
 
@@ -66,19 +63,38 @@
   });
 })();
 
-/* ---------- NAVBAR ---------- */
-(function initNavbar() {
-  const nav    = document.querySelector('.navbar');
-  const toggle = document.querySelector('.nav-toggle');
-  const mobile = document.querySelector('.mobile-nav');
-  if (!nav) return;
+/* ---------- NAVBAR + PROGRESS BAR (single batched scroll handler) ---------- */
+(function initScrollUI() {
+  const nav = document.querySelector('.navbar');
 
-  // Scroll shrink
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
+  // Progress bar
+  const bar = document.createElement('div');
+  bar.style.cssText = `
+    position:fixed;top:0;left:0;height:2px;width:0;
+    background:var(--red);z-index:99999;
+    will-change:width;pointer-events:none;
+  `;
+  document.body.appendChild(bar);
+
+  let ticking = false;
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      if (nav) nav.classList.toggle('scrolled', y > 40);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max > 0) bar.style.width = (y / max * 100) + '%';
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
 
   // Mobile toggle
+  const toggle = document.querySelector('.nav-toggle');
+  const mobile = document.querySelector('.mobile-nav');
   if (toggle && mobile) {
     toggle.addEventListener('click', () => {
       toggle.classList.toggle('open');
@@ -94,7 +110,7 @@
     });
   }
 
-  // Active link highlight
+  // Active link
   const current = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(a => {
     const href = a.getAttribute('href');
@@ -116,7 +132,7 @@
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   els.forEach(el => obs.observe(el));
 })();
@@ -129,11 +145,11 @@
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('revealed'), 100);
+        e.target.classList.add('revealed');
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
 
   cards.forEach(c => obs.observe(c));
 })();
@@ -147,7 +163,7 @@
     entries.forEach(e => {
       e.target.classList.toggle('active', e.isIntersecting);
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.35 });
 
   steps.forEach(s => obs.observe(s));
 })();
@@ -166,14 +182,13 @@
 
       cards.forEach(card => {
         const show = filter === 'all' || card.dataset.category === filter;
-        card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
         if (show) {
           card.style.opacity = '1';
           card.style.transform = 'scale(1)';
           card.style.pointerEvents = 'auto';
         } else {
           card.style.opacity = '0';
-          card.style.transform = 'scale(0.95)';
+          card.style.transform = 'scale(0.96)';
           card.style.pointerEvents = 'none';
         }
       });
@@ -210,9 +225,9 @@
     const payload = {
       name:    (fname + ' ' + lname).trim(),
       email:   email,
-      subject: 'VOID Fashion — ' + subject,
+      subject: 'MOUNAM —' + subject,
       message: message,
-      _subject: 'VOID Fashion Website — New Message from ' + fname,
+      _subject: 'MOUNAM — New Message from' + fname,
       _captcha: 'false',
       _template: 'table'
     };
@@ -233,8 +248,6 @@
       }
     })
     .catch(function() {
-      // First-time use: FormSubmit sends a confirmation email to Gopika.
-      // She must click "Confirm your email" in that email — only needed once.
       showToast('Check gopikaajith1908@gmail.com for a one-time activation email from FormSubmit, then try again.');
       if (btn) { btn.disabled = false; btn.innerHTML = '<span>Send Message</span><span class="btn-arrow">&#8594;</span>'; }
     });
@@ -256,8 +269,8 @@ function showToast(msg) {
 
 /* ---------- LIGHTBOX ---------- */
 (function initLightbox() {
-  const lb   = document.querySelector('.lightbox');
-  const lbImg = lb ? lb.querySelector('.lightbox-img') : null;
+  const lb      = document.querySelector('.lightbox');
+  const lbImg   = lb ? lb.querySelector('.lightbox-img') : null;
   const lbClose = lb ? lb.querySelector('.lightbox-close') : null;
   if (!lb) return;
 
@@ -280,17 +293,28 @@ function showToast(msg) {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 })();
 
-/* ---------- PARALLAX HERO ---------- */
+/* ---------- PARALLAX HERO (rAF batched) ---------- */
 (function initParallax() {
   const hero = document.querySelector('.hero');
   if (!hero) return;
 
-  window.addEventListener('scroll', () => {
+  const content = hero.querySelector('.hero-content');
+  const video   = hero.querySelector('video');
+  let lastY = -1;
+  let rafId;
+
+  function updateParallax() {
     const y = window.scrollY;
-    const content = hero.querySelector('.hero-content');
-    if (content) content.style.transform = `translateY(${y * 0.3}px)`;
-    const video = hero.querySelector('video');
-    if (video) video.style.transform = `translateY(${y * 0.15}px) scale(1.05)`;
+    if (y === lastY) { rafId = requestAnimationFrame(updateParallax); return; }
+    lastY = y;
+    if (content) content.style.transform = `translate3d(0, ${y * 0.28}px, 0)`;
+    if (video)   video.style.transform   = `translate3d(0, ${y * 0.12}px, 0) scale(1.05)`;
+    rafId = requestAnimationFrame(updateParallax);
+  }
+
+  window.addEventListener('scroll', () => {
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(updateParallax);
   }, { passive: true });
 })();
 
@@ -308,16 +332,17 @@ function showToast(msg) {
 
       const suffix = el.dataset.suffix || '';
       const prefix = el.dataset.prefix || '';
-      let current = 0;
-      const step = target / 60;
-      const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
-        }
-        el.textContent = prefix + Math.floor(current) + suffix;
-      }, 16);
+      let start = null;
+      const duration = 900;
+
+      function step(ts) {
+        if (!start) start = ts;
+        const progress = Math.min((ts - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = prefix + Math.floor(ease * target) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
       obs.unobserve(el);
     });
   }, { threshold: 0.5 });
@@ -327,16 +352,14 @@ function showToast(msg) {
 
 /* ---------- SMOOTH SECTION TRANSITIONS ---------- */
 (function initSectionColors() {
-  // Subtle background color shift as user scrolls through sections
   const sections = document.querySelectorAll('section[data-bg]');
   if (!sections.length) return;
 
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        const bg = e.target.dataset.bg;
-        document.body.style.transition = 'background 0.6s ease';
-        document.body.style.background = bg;
+        document.body.style.transition = 'background 0.5s ease';
+        document.body.style.background = e.target.dataset.bg;
       }
     });
   }, { threshold: 0.4 });
@@ -350,7 +373,7 @@ function showToast(msg) {
   if (!items.length) return;
 
   items.forEach((item, i) => {
-    item.style.transitionDelay = (i % 3) * 0.1 + 's';
+    item.style.transitionDelay = (i % 3) * 0.08 + 's';
     item.classList.add('reveal');
   });
 })();
@@ -362,11 +385,10 @@ function showToast(msg) {
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      btn.style.transform = `translate(${x * 0.18}px, ${y * 0.18}px)`;
+      btn.style.transform = `translate3d(${x * 0.15}px, ${y * 0.15}px, 0)`;
     });
     btn.addEventListener('mouseleave', () => {
-      btn.style.transform = '';
-      btn.style.transition = 'transform 0.4s ease';
+      btn.style.transform = 'translate3d(0,0,0)';
     });
   });
 })();
@@ -385,67 +407,20 @@ function showToast(msg) {
     const word = words[wi];
     if (!deleting) {
       el.textContent = word.slice(0, ++ci);
-      if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
+      if (ci === word.length) { deleting = true; setTimeout(type, 1600); return; }
     } else {
       el.textContent = word.slice(0, --ci);
       if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
     }
-    setTimeout(type, deleting ? 60 : 110);
+    setTimeout(type, deleting ? 50 : 100);
   }
   setTimeout(type, 600);
-})();
-
-/* ---------- NAV PROGRESS BAR ---------- */
-(function initProgressBar() {
-  const bar = document.createElement('div');
-  bar.style.cssText = `
-    position:fixed;top:0;left:0;height:2px;width:0;
-    background:var(--red);z-index:99999;
-    transition:width 0.1s linear;pointer-events:none;
-  `;
-  document.body.appendChild(bar);
-
-  window.addEventListener('scroll', () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = (window.scrollY / max * 100) + '%';
-  }, { passive: true });
-})();
-
-/* ---------- RANDOM PICSUM IMAGES FOR PLACEHOLDERS ---------- */
-(function loadPlaceholderImages() {
-  // Curated seeds that look great in grayscale for a fashion/textile context
-  const seeds = [
-    'fashion','fabric','textile','drape','void','studio',
-    'minimal','form','structure','pattern','couture','thread',
-    'silhouette','mono','design','fold','cut','stitch'
-  ];
-
-  const placeholders = document.querySelectorAll('.img-placeholder');
-  placeholders.forEach(function(el, i) {
-    const seed = seeds[i % seeds.length];
-    const url  = 'https://picsum.photos/seed/' + seed + '/800/700?grayscale';
-
-    el.style.backgroundImage    = 'url(' + url + ')';
-    el.style.backgroundSize     = 'cover';
-    el.style.backgroundPosition = 'center';
-    el.style.backgroundRepeat   = 'no-repeat';
-
-    // Hide the text label once image loads
-    const label = el.querySelector('.img-placeholder-text');
-    if (label) label.style.display = 'none';
-    el.querySelector && el.querySelectorAll('*').forEach(function(child) {
-      if (child.classList && child.classList.contains('img-placeholder-text')) {
-        child.style.display = 'none';
-      }
-    });
-  });
 })();
 
 /* ---------- HERO VIDEO: auto-play fallback fix ---------- */
 (function fixHeroVideo() {
   const video = document.querySelector('.hero-video video');
   if (!video) return;
-  // Ensure it plays on user interaction if autoplay was blocked
   video.play().catch(function() {
     document.body.addEventListener('click', function() {
       video.play();

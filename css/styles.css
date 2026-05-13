@@ -5,10 +5,10 @@
 
 /* ---------- CSS VARIABLES ---------- */
 :root {
-  --bg:         #0c0b0a;
-  --bg-2:       #111009;
-  --bg-3:       #1c1a18;
-  --bg-4:       #252220;
+  --bg:         #2e2b28;
+  --bg-2:       #373430;
+  --bg-3:       #46423d;
+  --bg-4:       #55504a;
   --white:      #ffffff;
   --grey-light: #e0e0e0;
   --grey:       #b0b0b0;
@@ -61,19 +61,18 @@ em, i, h1 em, h2 em, h3 em, h4 em, p em,
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
-  transition: transform 0.1s ease, opacity 0.3s ease;
+  top: 0; left: 0;
+  will-change: transform;
 }
 .cursor-dot {
   width: 8px; height: 8px;
   background: var(--red);
-  top: 0; left: 0;
-  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
 }
 .cursor-ring {
   width: 36px; height: 36px;
   border: 1.5px solid var(--red);
-  top: 0; left: 0;
-  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.3s ease;
   transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, transform 0.12s ease;
 }
 .cursor-ring.hovered {
@@ -181,11 +180,11 @@ body::before {
   justify-content: space-between;
   padding: 0 5vw;
   z-index: 1000;
-  transition: background var(--transition), backdrop-filter var(--transition);
+  transition: background 0.3s ease;
+  will-change: background;
 }
 .navbar.scrolled {
-  background: rgba(0,0,0,0.88);
-  backdrop-filter: blur(16px);
+  background: rgba(20,18,16,0.96);
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
@@ -394,7 +393,7 @@ body::before {
 .hero-video video {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: grayscale(100%) brightness(0.35);
+  filter: grayscale(60%) brightness(0.85);
 }
 .hero-video::after {
   content: '';
@@ -559,26 +558,29 @@ body::before {
 /* Reveal animations (JS adds .revealed) */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate3d(0, 30px, 0);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
 }
 .reveal.revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 .reveal-left {
   opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translate3d(-40px, 0, 0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: transform, opacity;
 }
-.reveal-left.revealed { opacity: 1; transform: translateX(0); }
+.reveal-left.revealed { opacity: 1; transform: translate3d(0, 0, 0); }
 .reveal-right {
   opacity: 0;
-  transform: translateX(50px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translate3d(40px, 0, 0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: transform, opacity;
 }
-.reveal-right.revealed { opacity: 1; transform: translateX(0); }
+.reveal-right.revealed { opacity: 1; transform: translate3d(0, 0, 0); }
 
 /* Stagger delays */
 .delay-1 { transition-delay: 0.1s; }
@@ -642,13 +644,14 @@ body::before {
   height: 100%;
   min-height: 300px;
   object-fit: cover;
-  filter: grayscale(100%) brightness(0.7);
-  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1),
-              filter 0.7s ease;
+  filter: grayscale(60%) brightness(1.05);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.4s ease;
+  will-change: transform;
 }
 .featured-item:hover .featured-img {
   transform: scale(1.06);
-  filter: grayscale(60%) brightness(0.85);
+  filter: grayscale(60%) brightness(1.0);
 }
 .featured-overlay {
   position: absolute;
@@ -812,7 +815,7 @@ body::before {
 }
 .about-img-wrap img {
   height: 550px;
-  filter: grayscale(100%);
+  filter: grayscale(40%) brightness(1.05);
   transition: filter var(--transition-slow);
 }
 .about-img-wrap:hover img { filter: grayscale(60%); }
@@ -879,16 +882,24 @@ body::before {
   background: var(--bg-3);
   cursor: none;
 }
+.story-item-img {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
 .story-item img {
   width: 100%;
-  filter: grayscale(100%) brightness(0.75);
-  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1),
-              filter 0.6s ease;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(60%) brightness(1.05);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.35s ease;
   display: block;
+  will-change: transform;
 }
 .story-item:hover img {
   transform: scale(1.05);
-  filter: grayscale(30%) brightness(0.9);
+  filter: grayscale(30%) brightness(1.05);
 }
 .story-item-caption {
   position: absolute;
@@ -946,6 +957,8 @@ body::before {
   overflow: hidden;
   position: relative;
   cursor: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  will-change: transform, opacity;
 }
 .garment-img-wrap {
   overflow: hidden;
@@ -954,13 +967,14 @@ body::before {
 }
 .garment-img-wrap img {
   height: 100%;
-  filter: grayscale(100%) brightness(0.8);
-  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1),
-              filter 0.6s ease;
+  filter: grayscale(60%) brightness(1.05);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.35s ease;
+  will-change: transform;
 }
 .garment-card:hover .garment-img-wrap img {
   transform: scale(1.08);
-  filter: grayscale(20%) brightness(0.95);
+  filter: grayscale(20%) brightness(1.05);
 }
 .garment-overlay {
   position: absolute;
@@ -1073,10 +1087,14 @@ body::before {
 }
 .process-step-img img {
   height: 100%;
-  filter: grayscale(100%);
-  transition: filter var(--transition-slow);
+  filter: grayscale(100%) brightness(0.75);
+  transition: filter 0.5s ease, transform 0.5s ease;
+  will-change: transform, filter;
 }
-.process-step:hover .process-step-img img { filter: grayscale(40%); }
+.process-step:hover .process-step-img img {
+  filter: grayscale(0%) brightness(1.0);
+  transform: scale(1.04);
+}
 .process-step-text h3 { margin-bottom: 1rem; }
 .process-step-text p { margin-bottom: 1.5rem; }
 .process-tags {
@@ -1110,10 +1128,10 @@ body::before {
 .designer-img-col img {
   height: 100%;
   min-height: 500px;
-  filter: grayscale(100%) brightness(0.75);
+  filter: grayscale(60%) brightness(1.05);
   transition: filter var(--transition-slow);
 }
-.designer-img-col:hover img { filter: grayscale(30%) brightness(0.9); }
+.designer-img-col:hover img { filter: grayscale(30%) brightness(1.0); }
 .designer-img-col::after {
   content: '';
   position: absolute;
@@ -1415,7 +1433,7 @@ body::before {
   max-width: 85vw;
   max-height: 85vh;
   object-fit: contain;
-  filter: grayscale(100%);
+  filter: grayscale(40%) brightness(1.05);
 }
 .lightbox-close {
   position: absolute;
@@ -1565,8 +1583,7 @@ body::before {
 /* Secondary background sections — semi-transparent so body watercolor shows */
 .marquee-band,
 .footer {
-  background: rgba(17, 16, 9, 0.82);
-  backdrop-filter: blur(2px);
+  background: rgba(26, 25, 23, 0.95);
 }
 
 .step-card,

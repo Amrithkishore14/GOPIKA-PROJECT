@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -i '' 's/filter: grayscale\\(100%\\) brightness\\(0\\\\.55\\)/filter: grayscale\\(60%\\) brightness\\(0.85\\)/g' \"/Users/amrithkishore/Desktop/PROJECT GOPIKA /css/styles.css\")",
+      "Bash(__NEW_LINE_672c143add98ea95__ sed -i '' 's/filter: grayscale\\(100%\\) brightness\\(0\\\\.88\\)/filter: grayscale\\(60%\\) brightness\\(1.05\\)/g' \"/Users/amrithkishore/Desktop/PROJECT GOPIKA /css/styles.css\")",
+      "Bash(__NEW_LINE_672c143add98ea95__ sed -i '' 's/filter: grayscale\\(100%\\) brightness\\(0\\\\.9\\)/filter: grayscale\\(60%\\) brightness\\(1.05\\)/g' \"/Users/amrithkishore/Desktop/PROJECT GOPIKA /css/styles.css\")",
+      "Bash(__NEW_LINE_672c143add98ea95__ sed -i '' 's/filter: grayscale\\(100%\\) brightness\\(0\\\\.95\\)/filter: grayscale\\(60%\\) brightness\\(1.05\\)/g' \"/Users/amrithkishore/Desktop/PROJECT GOPIKA /css/styles.css\")",
+      "Bash(__NEW_LINE_672c143add98ea95__ sed -i '' 's/filter: grayscale\\(100%\\);/filter: grayscale\\(40%\\) brightness\\(1.05\\);/g' \"/Users/amrithkishore/Desktop/PROJECT GOPIKA /css/styles.css\")"
+    ]
+  }
+}
