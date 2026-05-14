@@ -183,13 +183,17 @@
       cards.forEach(card => {
         const show = filter === 'all' || card.dataset.category === filter;
         if (show) {
-          card.style.opacity = '1';
-          card.style.transform = 'scale(1)';
+          card.style.display = '';
+          requestAnimationFrame(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+          });
           card.style.pointerEvents = 'auto';
         } else {
           card.style.opacity = '0';
           card.style.transform = 'scale(0.96)';
           card.style.pointerEvents = 'none';
+          setTimeout(() => { card.style.display = 'none'; }, 300);
         }
       });
     });
