@@ -196,14 +196,13 @@
   });
 })();
 
-/* ---------- CONTACT FORM — FormSubmit AJAX ---------- */
+/* ---------- CONTACT FORM — Formspree ---------- */
 (function initForm() {
   const form    = document.querySelector('.contact-form');
   const success = document.querySelector('.form-success');
   if (!form) return;
 
-  const TO = form.dataset.email || 'gopikaajith1908@gmail.com';
-  const ENDPOINT = 'https://formsubmit.co/ajax/' + TO;
+  const ENDPOINT = 'https://formspree.io/f/mgodbalv';
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -225,11 +224,8 @@
     const payload = {
       name:    (fname + ' ' + lname).trim(),
       email:   email,
-      subject: 'MOUNAM —' + subject,
-      message: message,
-      _subject: 'MOUNAM — New Message from' + fname,
-      _captcha: 'false',
-      _template: 'table'
+      subject: 'MOUNAM — ' + subject,
+      message: message
     };
 
     fetch(ENDPOINT, {
@@ -239,16 +235,16 @@
     })
     .then(function(res) { return res.json(); })
     .then(function(data) {
-      if (data.success === 'true' || data.success === true) {
+      if (data.ok) {
         form.style.display = 'none';
         if (success) success.classList.add('show');
-        showToast('Message sent to gopikaajith1908@gmail.com!');
+        showToast('Message sent!');
       } else {
-        throw new Error('FormSubmit error');
+        throw new Error('Formspree error');
       }
     })
     .catch(function() {
-      showToast('Check gopikaajith1908@gmail.com for a one-time activation email from FormSubmit, then try again.');
+      showToast('Something went wrong. Please try again.');
       if (btn) { btn.disabled = false; btn.innerHTML = '<span>Send Message</span><span class="btn-arrow">&#8594;</span>'; }
     });
   });
